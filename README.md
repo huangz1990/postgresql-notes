@@ -81,3 +81,73 @@ ALTER USER postgres with encrypted password 'your_password';
 ```
 
 更多信息可以参考Ubuntu的PG安装和配置指南：https://ubuntu.com/server/docs/databases-postgresql。
+
+
+
+## 编译&测试
+
+PG的源码可以在这里找到：[git.postgresql.org Git - postgresql.git/summary](https://git.postgresql.org/gitweb/?p=postgresql.git)
+
+编译步骤可以在这里找到：[PostgreSQL: Documentation: 15: Chapter 17. Installation from Source Code](https://www.postgresql.org/docs/current/installation.html)
+
+根据[Compile and Install from source code - PostgreSQL wiki](https://wiki.postgresql.org/wiki/Compile_and_Install_from_source_code)，编译需要安装以下一些库：
+
+```bash
+$ sudo apt-get install build-essential libreadline-dev zlib1g-dev flex bison libxml2-dev libxslt-dev libssl-dev libxml2-utils xsltproc ccache
+```
+
+获取源码：
+
+```bash
+$ git clone git://git.postgresql.org/git/postgresql.git
+```
+
+配置：
+
+```bash
+$ ./configure --without-icu
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+...
+config.status: linking src/backend/port/sysv_shmem.c to src/backend/port/pg_shmem.c
+config.status: linking src/include/port/linux.h to src/include/pg_config_os.h
+config.status: linking src/makefiles/Makefile.linux to src/Makefile.port
+```
+
+TODO：安装了icu库但是没有找到，所以这里编译的时候关闭了该库，待解决……
+
+编译：
+
+```bash
+$ make
+make -C ./src/backend generated-headers
+make[1]: Entering directory '/home/huangz/postgresql/src/backend'
+...
+make[1]: Entering directory '/home/huangz/postgresql/config'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/huangz/postgresql/config'
+```
+
+测试：
+
+```bash
+$ make check
+...
+# +++ regress check in src/test/regress +++
+# using temp instance on port 61696 with PID 51090
+ok 1         - test_setup                                106 ms
+# parallel group (20 tests):  varchar char name oid int2 text txid pg_lsn boolean int4 uuid float4 regproc money int8 float8 bit enum numeric rangetypes
+ok 2         + boolean                                    19 ms
+ok 3         + char                                        9 ms
+ok 4         + name                                       11 ms
+ok 5         + varchar                                     8 ms
+...
+ok 214       - fast_default                               56 ms
+ok 215       - tablespace                                128 ms
+1..215
+# All 215 tests passed.
+make[1]: Leaving directory '/home/huangz/postgresql/src/test/regress'
+```
+
+
+
