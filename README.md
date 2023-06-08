@@ -114,7 +114,13 @@ config.status: linking src/include/port/linux.h to src/include/pg_config_os.h
 config.status: linking src/makefiles/Makefile.linux to src/Makefile.port
 ```
 
-TODO：安装了icu库但是没有找到，所以这里编译的时候关闭了该库，待解决……
+> TODO
+>
+> 安装了icu库但是没有找到，所以这里编译的时候关闭了该库，待解决……
+>
+> [ICU - International Components for Unicode](https://icu.unicode.org/)
+>
+> [libicu-dev_67.1-7_amd64.deb Debian 11 Download (pkgs.org)](https://debian.pkgs.org/11/debian-main-amd64/libicu-dev_67.1-7_amd64.deb.html)
 
 编译：
 
