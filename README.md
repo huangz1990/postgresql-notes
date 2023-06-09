@@ -176,5 +176,34 @@ CREATE DATABASE
 
 
 
+## 列出数据库&切换数据库
 
+使用``\l``或者``\list``可以列出当前PG服务器拥有的数据库：
+
+```sql
+postgres=# \list
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 |
+ template0 | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ template1 | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ testdb    | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 |
+(4 rows)
+```
+
+使用``\c``或者``\connect``可以切换至指定的数据库：
+
+```sql
+postgres=# \connect testdb
+You are now connected to database "testdb" as user "postgres".
+```
+
+这种以反斜杠开头的命令被``psql``称为元命令，更多元命令用法可见：[PostgreSQL: Documentation: devel: psql](https://www.postgresql.org/docs/devel/app-psql.html)。
+
+
+
+## 创建表
 
