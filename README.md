@@ -157,3 +157,24 @@ make[1]: Leaving directory '/home/huangz/postgresql/src/test/regress'
 
 
 
+## 创建数据库
+
+创建数据库需要用到``CREATE DATABSE``命令：
+
+```sql
+CREATE DATABSE name;
+```
+
+执行以下命令以创建``testdb``：
+
+```sql
+postgres=# CREATE DATABASE testdb;
+CREATE DATABASE
+```
+
+该命令的详细信息请见：[PostgreSQL: Documentation: devel: 23.2. Creating a Database](https://www.postgresql.org/docs/devel/manage-ag-createdb.html)
+
+
+
+
+
