@@ -311,3 +311,50 @@ DELETE 1
 
 
 ## 添加/删除索引
+
+使用[CREATE INDEX](https://www.postgresql.org/docs/devel/sql-createindex.html)为表中的列创建索引以提高查询速度：
+
+```sql
+testdb=# CREATE INDEX ON person (name);
+CREATE INDEX
+```
+
+使用元命令``\di``可以查看数据库目前已有的索引：
+
+```sql
+testdb=# \di
+                  List of relations
+ Schema |      Name       | Type  |  Owner   | Table
+--------+-----------------+-------+----------+--------
+ public | person_name_idx | index | postgres | person
+ public | person_pkey     | index | postgres | person
+(2 rows)
+```
+
+其中``person_name_idx``是我们刚刚创建的索引，而``person_pkey``则是PG自动为主键``id``创建的索引。
+
+使用[DROP INDEX](https://www.postgresql.org/docs/devel/sql-dropindex.html)可以删除不需要的索引：
+
+```sql
+testdb=# DROP INDEX person_name_idx;
+DROP INDEX
+testdb=# \di
+                List of relations
+ Schema |    Name     | Type  |  Owner   | Table
+--------+-------------+-------+----------+--------
+ public | person_pkey | index | postgres | person
+(1 row)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
