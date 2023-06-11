@@ -157,7 +157,7 @@ make[1]: Leaving directory '/home/huangz/postgresql/src/test/regress'
 
 
 
-## 创建数据库
+## 创建/删除数据库
 
 创建数据库需要用到``CREATE DATABSE``命令：
 
@@ -173,6 +173,33 @@ CREATE DATABASE
 ```
 
 该命令的详细信息请见：[PostgreSQL: Documentation: devel: 23.2. Creating a Database](https://www.postgresql.org/docs/devel/manage-ag-createdb.html)
+
+删除数据库可以使用``DROP DATABASE`` ：
+
+```sql
+testdb=# CREATE DATABASE anotherdb;
+CREATE DATABASE
+testdb=# DROP DATABASE anotherdb;
+DROP DATABASE
+```
+
+更多信息[PostgreSQL: Documentation: devel: DROP TABLE](https://www.postgresql.org/docs/devel/sql-droptable.html)。
+
+查看数据库使用``\l``：
+
+```sql
+testdb=# \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 |
+ template0 | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ template1 | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ testdb    | postgres | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 |
+(4 rows)
+```
 
 
 
