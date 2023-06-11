@@ -271,5 +271,43 @@ DROP TABLE
 
 
 
-## 
+## 插入行/查看行/删除行
 
+使用``INSERT``命令可以将新行插入到表里面：
+
+```sql
+testdb=# INSERT INTO person (name, age) VALUES ('peter', 29);
+INSERT 0 1
+testdb=# INSERT INTO person (name, age) VALUES ('jack', 22);
+INSERT 0 1
+```
+
+``INSERT``命令的更多信息：[PostgreSQL: Documentation: devel: INSERT](https://www.postgresql.org/docs/devel/sql-insert.html)。
+
+查看表中的行可以使用``SELECT``命令：
+
+```sql
+testdb=# SELECT * FROM person;
+ id | name  | age
+----+-------+-----
+  1 | peter |  29
+  2 | jack  |  22
+(2 rows)
+```
+
+``SELECT``命令的更多信息：[PostgreSQL: Documentation: devel: SELECT](https://www.postgresql.org/docs/devel/sql-select.html)。
+
+删除行可以使用``DELETE``命令，以下展示了如何创建并删除一个行：
+
+```sql
+testdb=# INSERT INTO person (name, age) VALUES ('someone', 256);
+INSERT 0 1
+testdb=# DELETE FROM person WHERE id=3;
+DELETE 1
+```
+
+``DELETE``命令的更多信息：https://www.postgresql.org/docs/devel/sql-delete.html。
+
+
+
+## 添加/删除索引
