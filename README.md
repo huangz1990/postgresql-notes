@@ -205,5 +205,44 @@ You are now connected to database "testdb" as user "postgres".
 
 
 
-## 创建表
+## 创建/删除表
+
+创建表需要用到``CREATE TABLE``命令：
+
+```sql
+testdb=# CREATE TABLE person (
+testdb(#   id SERIAL PRIMARY KEY,
+testdb(#   name VARCHAR(80),
+testdb(#   age SMALLINT
+testdb(# );
+CREATE TABLE
+```
+
+之后用``\dt``命令可以查看被创建的表：
+
+```sql
+testdb=# \dt
+         List of relations
+ Schema |  Name  | Type  |  Owner
+--------+--------+-------+----------
+ public | person | table | postgres
+(1 row)
+```
+
+创建表的更多信息可以参考[PostgreSQL: Documentation: devel: createdb](https://www.postgresql.org/docs/devel/app-createdb.html)。
+
+当不再需要某个表的时候，可以使用``DROP TABLE``将其删除。作为例子，以下代码先创建然后再删除了``dummy``表：
+
+```sql
+testdb=# CREATE TABLE dummy ();
+CREATE TABLE
+testdb=# DROP TABLE dummy;
+DROP TABLE
+```
+
+``DROP TABLE``的更多信息可见：[PostgreSQL: Documentation: devel: DROP TABLE](https://www.postgresql.org/docs/devel/sql-droptable.html)。
+
+
+
+## 
 
